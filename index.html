@@ -13,6 +13,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>HANGMAN</h1>
+        <div id="wordDisplay"></div>
+        <div id="wrongLetters"></div>
+        <div id="attempts">Attempts left: <span id="attemptCount">6</span></div>
+        <input type="text" id="letterInput" maxlength="1" />
+        <button id="guessButton">Guess</button>
+        <button id="restartButton" style="display: none;">Restart</button>
+        <div id="message"></div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html> 
