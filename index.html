@@ -1,28 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HANGMAN</title>
     <!--fonts-->
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
     <!--style-->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>HANGMAN</h1>
-        <div id="wordDisplay"></div>
-        <div id="wrongLetters"></div>
-        <div id="attempts">Attempts left: <span id="attemptCount">6</span></div>
-        <input type="text" id="letterInput" maxlength="1" />
-        <button id="guessButton">Guess</button>
-        <button id="restartButton" style="display: none;">Restart</button>
-        <div id="message"></div>
+      <h1>HANGMAN</h1>
+      <div id="wordDisplay"></div>
+      <div id="wrongLetters"></div>
+      <div id="attempts">Attempts left: <span id="attemptCount">6</span></div>
+      <input type="text" id="letterInput" maxlength="1" />
+      <button id="guessButton">Guess</button>
+      <button id="restartButton" style="display: none">Restart</button>
+      <div id="message"></div>
     </div>
     <script src="script.js"></script>
-</body>
-</html> 
+  </body>
+</html>
