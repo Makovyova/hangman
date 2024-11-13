@@ -30,7 +30,7 @@ function startGame() {
   updateWordDisplay();
   
 }
-
+/*
 function createKeyboard() {
     const keyboardElement = document.getElementById("keyboard");
     keyboardElement.innerHTML = ''; // Clear any existing buttons
@@ -44,7 +44,7 @@ function createKeyboard() {
         keyboardElement.appendChild(button);
     });
 }
-
+*/
 function updateWordDisplay() {
   const wordDisplay = selectedWord
     .split('')
