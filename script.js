@@ -28,6 +28,21 @@ function startGame() {
   document.getElementById('wrongLetters').innerText = '';
   document.getElementById('restartButton').style.display = 'none';
   updateWordDisplay();
+  
+}
+
+function createKeyboard() {
+    const keyboardElement = document.getElementById("keyboard");
+    keyboardElement.innerHTML = ''; // Clear any existing buttons
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    
+    letters.split('').forEach(letter => {
+        const button = document.createElement('button');
+        button.innerText = letter;
+        button.classList.add('key'); // Add a class for styling
+        button.onclick = () => handleGuess(letter); // Attach click event
+        keyboardElement.appendChild(button);
+    });
 }
 
 function updateWordDisplay() {
@@ -77,3 +92,7 @@ document.getElementById('restartButton').addEventListener('click', startGame);
 
 // Start the game for the first time
 startGame();
+/*
+startGame = () => {
+    createKeyboard(); // Create the keyboard
+}; */

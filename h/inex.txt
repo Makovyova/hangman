@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Hangman Game</h1>
+        <div id="gallows">
+            <img id="gallows-image" src="gallows0.png" alt="Gallows">
+        </div>
+        <div id="quiz-part">
+            <p id="question"></p>
+            <p id="secret-word"></p>
+            <p id="incorrect-guesses">Incorrect Guesses: <span id="incorrect-count">0</span></p>
+            <div id="keyboard"></div>
+            <button id="play-again" style="display: none;">Play Again</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
