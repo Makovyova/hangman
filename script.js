@@ -1,98 +1,89 @@
-/* //define body tag
-const body=document.querySelector('body')
+//Клавакока
+function createKeyboard(){
+    const keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const keyboardDiv = document.getElementById('keyboard');
 
-//create elements for the gallows part
-const container=document.createElement('div')
-div.className="container"
-body.append(container)
-
-const gallow=document.createElement('img')
-img.src="gallows.svg"
-img.src="Gallow"
-container.append(img)
-*/
-const words = ['javascript', 'hangman', 'programming', 'developer', 'coding'];
-let selectedWord = '';
-let guessedLetters = [];
-let wrongLetters = [];
-let attempts = 6;
-
-function startGame() {
-  selectedWord = words[Math.floor(Math.random() * words.length)];
-  guessedLetters = [];
-  wrongLetters = [];
-  attempts = 6;
-  document.getElementById('attemptCount').innerText = attempts;
-  document.getElementById('letterInput').value = '';
-  document.getElementById('message').innerText = '';
-  document.getElementById('wrongLetters').innerText = '';
-  document.getElementById('restartButton').style.display = 'none';
-  updateWordDisplay();
-  
-}
-/*
-function createKeyboard() {
-    const keyboardElement = document.getElementById("keyboard");
-    keyboardElement.innerHTML = ''; // Clear any existing buttons
-    const letters = 'abcdefghijklmnopqrstuvwxyz';
-    
-    letters.split('').forEach(letter => {
-        const button = document.createElement('button');
-        button.innerText = letter;
-        button.classList.add('key'); // Add a class for styling
-        button.onclick = () => handleGuess(letter); // Attach click event
-        keyboardElement.appendChild(button);
+    keys.forEach(key => {
+        const keyDiv = document.createElement('div');
+        keyDiv.className = 'key';
+        keyDiv.innerHTML = `
+            <img src="img/SimpleKeys/Jumbo/Light/Single PNGs/${key}.png" alt="Клавиша ${key}">
+        `;
+        
+        // Добавление события клика
+        keyDiv.addEventListener('click', () => {
+            console.log(`Клавиша ${key} была нажата`);
+        });
+        
+        keyboardDiv.appendChild(keyDiv);
     });
 }
-*/
-function updateWordDisplay() {
-  const wordDisplay = selectedWord
-    .split('')
-    .map(letter => (guessedLetters.includes(letter) ? letter : '_'))
-    .join(' ');
-  document.getElementById('wordDisplay').innerText = wordDisplay;
+//Виселица в канвасе
+function createHangman(){
+    const canvas = document.getElementById('hangmanCanvas');
+    const ctx = canvas.getContext('2d');
 
-  if (wordDisplay.replace(/ /g, '') === selectedWord) {
-    document.getElementById('message').innerText =
-      "Congratulations! You've won!";
-    document.getElementById('restartButton').style.display = 'block';
-  }
+    // Функция для рисования виселицы
+    function drawGallows() {
+        ctx.beginPath();
+        ctx.moveTo(50, 350); // основание
+        ctx.lineTo(150, 350); // основание
+        ctx.moveTo(100, 350); // основание
+        ctx.lineTo(100, 50); // столб
+        ctx.lineTo(200, 50); // перекладина
+        ctx.lineTo(200, 100); // веревка
+        ctx.stroke();
+    }
+
+    // Функция для рисования человечка
+    function drawMan(step) {
+        ctx.fillStyle = 'black';
+        switch (step) {
+            case 1: // голова
+                ctx.beginPath();
+                ctx.arc(200, 120, 20, 0, Math.PI * 2, true);
+                ctx.fill();
+                break;
+            case 2: // тело
+                ctx.fillRect(195, 140, 10, 50);
+                break;
+            case 3: // левая рука
+                ctx.fillRect(180, 140, 15, 5);
+                break;
+            case 4: // правая рука
+                ctx.fillRect(200, 140, 15, 5);
+                break;
+            case 5: // левая нога
+                ctx.fillRect(195, 190, 5, 20);
+                break;
+            case 6: // правая нога
+                ctx.fillRect(200, 190, 5, 20);
+                break;
+        }
+    }
+
+    // Инициализация рисования
+    function drawHangman(step) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // очистка канваса
+        drawGallows();
+        drawMan(step);
+    }
+
+    // Пример: рисуем виселицу и человечка
+    let currentStep = 0; // начальное состояние
+    const maxSteps = 6; // максимальное количество шагов
+
+    function draw() {
+        if (currentStep <= maxSteps) {
+            drawHangman(currentStep);
+            currentStep++;
+            setTimeout(draw, 1000); // рисуем следующую часть каждые 1000 мс
+        }
+    }
+
+    draw(); // начинаем рисовать
 }
 
-document.getElementById('guessButton').addEventListener('click', () => {
-  const letterInput = document
-    .getElementById('letterInput')
-    .value.toLowerCase();
-  if (
-    letterInput &&
-    !guessedLetters.includes(letterInput) &&
-    !wrongLetters.includes(letterInput)
-  ) {
-    if (selectedWord.includes(letterInput)) {
-      guessedLetters.push(letterInput);
-    } else {
-      wrongLetters.push(letterInput);
-      attempts--;
-    }
-    document.getElementById('attemptCount').innerText = attempts;
-    document.getElementById('wrongLetters').innerText =
-      `Wrong Letters: ${wrongLetters.join(', ')}`;
-    updateWordDisplay();
 
-    if (attempts === 0) {
-      document.getElementById('message').innerText =
-        `Game Over! The word was "${selectedWord}".`;
-      document.getElementById('restartButton').style.display = 'block';
-    }
-  }
-  document.getElementById('letterInput').value = '';
-});
-
-document.getElementById('restartButton').addEventListener('click', startGame);
-
-// Start the game for the first time
-startGame();
-/*
-startGame = () => {
-    createKeyboard(); // Create the keyboard
-}; */
+createKeyboard();
+createHangman();

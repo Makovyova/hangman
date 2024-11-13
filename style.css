@@ -26,3 +26,34 @@ body {
   margin-top: 20px;
   font-weight: bold;
 }
+
+.keyboard{
+    margin: 50px auto;
+    padding: 20px;
+    background: #f4e8e8f0;
+    border-radius: 10px;
+    
+}
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px; /* Ширина клавиатуры */
+    align-self: center;
+}
+.key {
+    margin: 5px;
+    text-align: center;
+}
+.key img {
+    width: 50px; /* Ширина клавиши */
+    height: 50px; /* Высота клавиши */
+}
+
+canvas {
+    border: 1px solid black;
+}
+.gallow{
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}

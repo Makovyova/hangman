@@ -23,3 +23,48 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+2 version 
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HANGMAN</title>
+    <!--fonts-->
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <!--style-->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+        <img src="/img/light_bulb2.png" alt="light_bulb">
+    </header>
+    <div class="container">
+      <h1>HANGMAN</h1>
+      <!--div id="wordDisplay"></div>
+      <div id="wrongLetters"></div>
+      <div id="attempts">Attempts left: <span id="attemptCount">6</span></div>
+      <input type="text" id="letterInput" maxlength="1" />
+      <button id="guessButton">Guess</button>
+      <button id="restartButton" style="display: none">Restart</button>
+      <div id="message"></div>
+      <div id="keyboard" class="keyboard"></div-->
+    </div>
+    <div class="keyboard wrapper">
+        <!--img src="img/SimpleKeys/Jumbo/Light/Single PNGs/A.png" alt="keyboard"-->
+    </div>
+    <footer>
+        <div class="gallow">
+            <img src="/gallows.svg" alt="gallows">
+        </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
