@@ -1,0 +1,81 @@
+const questions = [
+    { question: "What is the capital of France?", answer: "paris" },
+    { question: "What is the largest planet in our solar system?", answer: "jupiter" },
+    { question: "What is the smallest prime number?", answer: "two" },
+    { question: "What is the chemical symbol for water?", answer: "h2o" },
+    { question: "What is the square root of 64?", answer: "eight" },
+];
+
+let currentQuestion;
+let secretWord;
+let incorrectCount;
+let maxAttempts = 6;
+let guessedLetters = [];
+
+const questionElement = document.getElementById("question");
+const secretWordElement = document.getElementById("secret-word");
+const incorrectCountElement = document.getElementById("incorrect-count");
+const gallowsImage = document.getElementById("gallows-image");
+const playAgainButton = document.getElementById("play-again");
+const keyboardElement = document.getElementById("keyboard");
+
+function startGame() {
+    currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+    secretWord = currentQuestion.answer;
+    incorrectCount = 0;
+    guessedLetters = [];
+    updateUI();
+}
+
+function updateUI() {
+    questionElement.innerText = currentQuestion.question;
+    secretWordElement.innerText = secretWord.split('').map(letter => (guessedLetters.includes(letter) ? letter : '_')).join(' ');
+    incorrectCountElement.innerText = incorrectCount;
+    gallowsImage.src = `gallows${incorrectCount}.png`; // gallows images should be named gallows0.png, gallows1.png, etc.
+    createKeyboard();
+    playAgainButton.style.display = "none";
+}
+
+function createKeyboard() {
+    keyboardElement.innerHTML = '';
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    letters.split('').forEach(letter => {
+        const button = document.createElement('button');
+        button.innerText = letter;
+        button.disabled = guessedLetters.includes(letter);
+        button.onclick = () => handleGuess(letter);
+        keyboardElement.appendChild(button);
+    });
+}
+
+function handleGuess(letter) {
+    guessedLetters.push(letter);
+    if (secretWord.includes(letter)) {
+        // Correct guess
+        if (isWordGuessed()) {
+            showEndGameModal(true);
+        }
+    } else {
+        // Incorrect guess
+        incorrectCount++;
+        if (incorrectCount >= maxAttempts) {
+            showEndGameModal(false);
+        }
+    }
+    updateUI();
+}
+
+function isWordGuessed() {
+    return secretWord.split('').every(letter => guessedLetters.includes(letter));
+}
+
+function showEndGameModal(won) {
+    const message = won ? "Congratulations! You've won!" : "Game Over! The word was: " + secretWord;
+    alert(message);
+    playAgainButton.style.display = "block";
+}
+
+playAgainButton.onclick = startGame;
+
+// Start the game for the first time
+startGame();
